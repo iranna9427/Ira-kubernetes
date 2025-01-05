@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod
+spec:
+  containers:
+  - name: demo-container
+    image: busybox
+    command: ["sh", "-c", "echo Username: $USERNAME && echo Password: $PASSWORD && sleep 3600"]
+    env:
+    - name: USERNAME
+      valueFrom:
+        configMapKeyRef:
+          name: demo-configmap
+          key: username
+    - name: PASSWORD
+      valueFrom:
+wq!        configMapKeyRef:
+          name: demo-configmap
+          key: password
+
